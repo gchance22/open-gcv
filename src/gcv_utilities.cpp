@@ -16,6 +16,10 @@ using namespace cv;
 
 namespace gcv {
     
+    Mat croppedImage(Mat img, int xstart,int ystart,int width,int height) {
+        Rect croppedArea(xstart, ystart, width, height);
+        return img(croppedArea);
+    }
     
     int numImagesInDirectory(string dirname) {
         printf("Accessing directory %s\n\n", dirname.c_str());
@@ -125,33 +129,4 @@ namespace gcv {
     }
 }
 
-//
-//
-//int main(int argc, char *argv[]) {
-//    
-//    char dirname[256];
-//    
-//    
-//    // by default, look at the current directory
-//    strcpy(dirname, ".");
-//    
-//    // if the user provided a directory path, use it
-//    if(argc > 1) {
-//        strcpy(dirname, argv[1]);
-//    }
-//    
-//    //    char imageNames[numImagesInDirectory(dirname)][32];
-//    //    imageNamesInDirectory(imageNames,dirname);
-//    int numImages = gcv::numImagesInDirectory(dirname);
-//    Mat *imgs = new Mat[numImages];
-//    gcv::loadImagesFromDirectory(imgs,numImages,dirname,false);
-//    //double similarity = compareImages(imgs[0],imgs[1],CV_COMP_CORREL);
-//    //printf("similarity: %f",similarity);
-//    
-//    
-//    gcv::showImage(imgs[0],"Original Image");
-//
-//    return 0;
-//    
-//}
 

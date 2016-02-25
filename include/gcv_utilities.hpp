@@ -22,6 +22,19 @@ using namespace cv;
 namespace gcv {
     
     /**
+     *  Crops an image Mat. Note: Does not copy the data.
+     *
+     *  @param img    Mat to crop.
+     *  @param xstart The starting column.
+     *  @param ystart The starting row.
+     *  @param width  How many columns the cropped image should have.
+     *  @param height How many rows the cropped image should have.
+     *
+     *  @return The cropped Mat.
+     */
+    Mat croppedImage(Mat img, int xstart,int ystart,int width,int height);
+    
+    /**
      *  Counts the number of images a directory.
      *
      *  @param dirname Directory to search.

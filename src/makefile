@@ -9,7 +9,7 @@ CFLAGS = -I/usr/local/Cellar/opencv/2.4.12_2/include -I../include
 CXXFLAGS = $(CFLAGS)
 
 # OSX Library paths
-LDFLAGS = -L/usr/local/lib -L/usr/local/Cellar/opencv3/3.1.0_1/lib -L../lib
+LDFLAGS = -L/usr/local/lib -L/usr/local/Cellar/opencv3/3.1.0_1/lib 
 
 # OSX libraries
 LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_objdetect 
@@ -17,19 +17,18 @@ LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lop
 
 BINDIR = ../bin
 
-all: utilities libgcv_utilities gcvimage libgcv_image
+all: utilities gcvimage libgcv
 
 utilities: gcv_utilities.o
 	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
 
-gcvimage: GCVImage.o
-	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS) -lgcv_utilities
+gcvimage: GCVImage.o gcv_utilities.o
+	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS) 
 
-libgcv_utilities: gcv_utilities.o 
-	g++ -dynamiclib -undefined suppress -flat_namespace gcv_utilities.o -o ../lib/libgcv_utilities.dylib
+libgcv: gcv_utilities.o gcvimage.o
+	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../lib/libgcv.dylib
+ 
 
-libgcv_image: gcvimage.o 
-	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o -o ../lib/libgcv_image.dylib
 
 clean:
 	rm -f *.o *~ 

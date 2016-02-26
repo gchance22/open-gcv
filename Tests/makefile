@@ -15,10 +15,10 @@ LDFLAGS = -L.. -L/usr/local/lib -L/usr/local/Cellar/opencv3/3.1.0_1/lib
 LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_objdetect -lgcv
 
 
-tests: gcvimage_tests
 
-gcvimage_tests: gcvimage_tests.o 
-	$(CC) $^ -o gcvimage_tests $(LDFLAGS) $(LDLIBS)
+tests: gcvimage_tests.o  gcv_utilities_tests.o
+	$(CC) $^ -o tests $(LDFLAGS) $(LDLIBS)
+
 
 
 clean:

@@ -55,6 +55,23 @@ namespace gcv {
         }
 
         /**
+         *  Constructor.
+         *
+         *  @param filepath Path to the image file.
+         *  @param loadMat Whether the matrix should be loaded.
+         *
+         *  @return A new GCVImage with the given image path.
+         */
+        GCVImage(string filepath, bool loadMat = false)
+        : imgPath(filepath), name(filepath) {
+            if (loadMat) {
+                this->loadMat(true);
+            } else {
+                this->matrix = Mat();
+            }
+        }
+
+        /**
          *  Path to the image file.
          */
         string imgPath;

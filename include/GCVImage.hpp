@@ -18,8 +18,6 @@ using namespace cv;
 
 namespace gcv {
 
-
-    /// This class models an image, although it really only contains the image path, so an instance does not take much memory.
     class GCVImage
     {
     public:
@@ -27,27 +25,32 @@ namespace gcv {
         /**
          *  Default Constructor.
          *
-         *  @param "" Empty path.
-         *
          *  @return A new GCVImage with an empty image path.
          */
-        GCVImage()
-        : imgPath("") { }
+        GCVImage() { }
 
         /**
          *  Constructor.
          *
          *  @param filepath Path to the image file.
          *  @param name A name describing the image.
+         *  @param loadMat Whether the matrix should be loaded.
          *
          *  @return A new GCVImage with the given image path.
          */
-        GCVImage(string filepath, string name = "")
+        GCVImage(string filepath, string name = "", bool loadMat = false)
         : imgPath(filepath) {
 
             if (name == "") {
                 name = filepath;
             }
+
+            if (loadMat) {
+                this->loadMat(true);
+            } else {
+                matrix = Mat();
+            }
+
         }
 
         /**
@@ -61,16 +64,31 @@ namespace gcv {
         string name;
 
         /**
+         *  The matrix for the image.
+         *  If loadMat() has not been called, it will be NULL;
+         */
+         Mat matrix;
+
+        /**
          *  Allows for matrix retrieval only when needed.
+         *
+         *  @param persist Whether the gcvimage should hold onto the Mat.
          *
          *  @return The Mat at the GCVImage's path.
          */
-        Mat loadMat();
+        Mat loadMat(bool persist = false);
 
         /**
          *  Displays the image until key-press.
          */
         void show();
+
+        /** A way to check whether the matrix has been loaded.
+         *
+         *  @return Whether matrix is not null.
+         */
+         bool matrixIsLoaded();
+
     };
 }
 

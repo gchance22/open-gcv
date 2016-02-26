@@ -1,6 +1,6 @@
 //
-//  gcvhelpers.hpp
-//  
+//  gcv_utilities.hpp
+//
 //
 //  Created by Graham Chance on 2/18/16.
 //
@@ -20,7 +20,7 @@
 using namespace cv;
 
 namespace gcv {
-    
+
     /**
      *  Crops an image Mat. Note: Does not copy the data.
      *
@@ -33,7 +33,7 @@ namespace gcv {
      *  @return The cropped Mat.
      */
     Mat croppedImage(Mat img, int xstart,int ystart,int width,int height);
-    
+
     /**
      *  Counts the number of images a directory.
      *
@@ -42,7 +42,7 @@ namespace gcv {
      *  @return The number of image files. -1 if failed to open directory.
      */
     int numImagesInDirectory(string dirname);
-    
+
     /**
      *  Gets the names of all the images in a directory.
      *
@@ -52,7 +52,7 @@ namespace gcv {
      *  @return -1 if failed to open directory, otherwise 0.
      */
     int imageNamesInDirectory(string dest[], string dirname);
-    
+
     /**
      *  Loads all images in a directory.
      *
@@ -62,7 +62,7 @@ namespace gcv {
      *  @param display Whether to display all of the found images.
      */
     void loadImagesFromDirectory(Mat dest[], int nimages, string dirname, bool display);
-    
+
     /**
      *  Displays an image.
      *
@@ -70,7 +70,7 @@ namespace gcv {
      *  @param displayname The name to appear on the window.
      */
     void showMat(Mat img, string displayname);
-    
+
     /**
      *  Shows an image.
      *
@@ -79,11 +79,7 @@ namespace gcv {
      *  @return -1 if failed, otherwise 0.
      */
     int showImageAtPath(string pathToImg);
-    
+
 }
 
-
-
-
 #endif /* gcv_utilities_hpp */
-

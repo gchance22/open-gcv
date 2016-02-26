@@ -1,6 +1,6 @@
 //
-//  gcvImage.hpp
-//  
+// GCVImage.hpp
+//
 //
 //  Created by Graham Chance on 2/20/16.
 //
@@ -17,13 +17,13 @@
 using namespace cv;
 
 namespace gcv {
-    
-    
+
+
     /// This class models an image, although it really only contains the image path, so an instance does not take much memory.
     class GCVImage
     {
     public:
-        
+
         /**
          *  Default Constructor.
          *
@@ -33,7 +33,7 @@ namespace gcv {
          */
         GCVImage()
         : imgPath("") { }
-        
+
         /**
          *  Constructor.
          *
@@ -44,25 +44,29 @@ namespace gcv {
          */
         GCVImage(string filepath, string name = "")
         : imgPath(filepath) {
-        
+
             if (name == "") {
                 name = filepath;
             }
         }
-        
-        
+
         /**
          *  Path to the image file.
          */
         string imgPath;
-        
+
+        /**
+         *  A name describing the image.
+         */
+        string name;
+
         /**
          *  Allows for matrix retrieval only when needed.
          *
          *  @return The Mat at the GCVImage's path.
          */
         Mat loadMat();
-        
+
         /**
          *  Displays the image until key-press.
          */

@@ -9,21 +9,26 @@ CFLAGS = -I/usr/local/Cellar/opencv/2.4.12_2/include -I../include
 CXXFLAGS = $(CFLAGS)
 
 # OSX Library paths
-LDFLAGS = -L/usr/local/lib -L/usr/local/Cellar/opencv3/3.1.0_1/lib 
+LDFLAGS = -L/usr/local/lib -L/usr/local/Cellar/opencv3/3.1.0_1/lib
 
 # OSX libraries
-LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_objdetect 
+LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_objdetect
 
 
 BINDIR = ../bin
 
+all: utilities gcvimage lib
 
-gcv: gcv_utilities.o gcvimage.o
-	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../lib/libgcv.dylib
- 
+gcvimage: GCVImage.o gcv_utilities.o
+	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
+
+utilities: gcv_utilities.o
+	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
+
+
+lib: gcv_utilities.o gcvimage.o
+	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../libgcv.dylib
 
 
 clean:
-	rm -f *.o *~ 
-
-
+	rm -f *.o *~

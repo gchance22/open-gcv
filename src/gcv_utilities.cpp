@@ -1,6 +1,6 @@
 //
-//  gcvhelpers.cpp
-//  
+//  gcv_utilities.cpp
+//
 //
 //  Created by Graham Chance on 2/18/16.
 //
@@ -9,18 +9,16 @@
 
 #include "gcv_utilities.hpp"
 
-
 using namespace std;
 using namespace cv;
 
-
 namespace gcv {
-    
+
     Mat croppedImage(Mat img, int xstart,int ystart,int width,int height) {
         Rect croppedArea(xstart, ystart, width, height);
         return img(croppedArea);
     }
-    
+
     int numImagesInDirectory(string dirname) {
         printf("Accessing directory %s\n\n", dirname.c_str());
         DIR *dirp;
@@ -31,7 +29,7 @@ namespace gcv {
             printf("Cannot open directory %s\n", dirname.c_str());
             return -1;
         }
-        
+
         // loop over the contents of the directory, looking for images
         // Get number of images first
         int numImages = 0;
@@ -49,8 +47,7 @@ namespace gcv {
         cout << " images in directory" << endl;
         return numImages;
     }
-    
-    
+
     int imageNamesInDirectory(string dest[], string dirname) {
         printf("Accessing directory %s\n\n", dirname.c_str());
         DIR *dirp;
@@ -73,13 +70,13 @@ namespace gcv {
                 i++;
             }
         }
-        
+
         // close the directory
-        
+
         closedir(dirp);
         return 0;
     }
-    
+
     void loadImagesFromDirectory(Mat dest[], int nimages, string dirname, bool display) {
         printf("Attempting to load %i images\n",nimages);
         if (nimages==0) { return; }
@@ -94,7 +91,7 @@ namespace gcv {
                 printf("Unable to read image %s\n", path.c_str());
                 break;
             }
-            
+
             dest[i] = img;
             if (display) {
                 namedWindow(imageNames[i], CV_WINDOW_NORMAL);
@@ -102,13 +99,12 @@ namespace gcv {
                 waitKey(0);
                 destroyWindow(imageNames[i]);
             }
-            
+
         }
         printf("%i images loaded into array\n",nimages);
         delete[] imageNames;
     }
-    
-    
+
     void showMat(Mat img, string displayname) {
         cout << "showing image" << endl;
         namedWindow(displayname, CV_WINDOW_NORMAL);
@@ -116,7 +112,7 @@ namespace gcv {
         waitKey(0);
         destroyWindow(displayname);
     }
-    
+
     int showImageAtPath(string pathToImg) {
         Mat img = imread(pathToImg);
         // test if the read was successful
@@ -128,5 +124,3 @@ namespace gcv {
         return 0;
     }
 }
-
-

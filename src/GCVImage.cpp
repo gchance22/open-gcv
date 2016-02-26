@@ -19,7 +19,7 @@ namespace gcv  {
         Mat dst;
         // resize so it fits the window well.
         resize(this->loadMat(), dst, Size(1024, 768), 0, 0, INTER_CUBIC);
-        showMat(dst,this->imgPath);
+        showMat(dst,this->name);
     }
     
 }

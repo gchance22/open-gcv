@@ -38,11 +38,22 @@ namespace gcv {
          *  Constructor.
          *
          *  @param filepath Path to the image file.
+         *  @param name A name describing the image.
          *
          *  @return A new GCVImage with the given image path.
          */
-        GCVImage(string filepath)
-        : imgPath(filepath) { }
+        GCVImage(string filepath, string name = "")
+        : imgPath(filepath) {
+        
+            if (name == "") {
+                name = filepath;
+            }
+        }
+        
+        
+        /**
+         *  Path to the image file.
+         */
         string imgPath;
         
         /**

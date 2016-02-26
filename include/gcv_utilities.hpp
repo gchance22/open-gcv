@@ -78,7 +78,7 @@ namespace gcv {
      *
      *  @return -1 if failed, otherwise 0.
      */
-    int showImage(string pathToImg);
+    int showImageAtPath(string pathToImg);
     
 }
 

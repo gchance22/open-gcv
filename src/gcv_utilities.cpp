@@ -117,7 +117,7 @@ namespace gcv {
         destroyWindow(displayname);
     }
     
-    int showImage(string pathToImg) {
+    int showImageAtPath(string pathToImg) {
         Mat img = imread(pathToImg);
         // test if the read was successful
         if(img.data == NULL) {

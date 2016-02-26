@@ -17,15 +17,8 @@ LDLIBS = -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lop
 
 BINDIR = ../bin
 
-all: utilities gcvimage libgcv
 
-utilities: gcv_utilities.o
-	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
-
-gcvimage: GCVImage.o gcv_utilities.o
-	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS) 
-
-libgcv: gcv_utilities.o gcvimage.o
+gcv: gcv_utilities.o gcvimage.o
 	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../lib/libgcv.dylib
  
 

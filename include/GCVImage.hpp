@@ -42,13 +42,15 @@ namespace gcv {
         : imgPath(filepath) {
 
             if (name == "") {
-                name = filepath;
+                this->name = filepath;
+            } else {
+                this->name = name;
             }
 
             if (loadMat) {
                 this->loadMat(true);
             } else {
-                matrix = Mat();
+                this->matrix = Mat();
             }
 
         }

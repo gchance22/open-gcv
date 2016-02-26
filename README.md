@@ -6,7 +6,10 @@ Making opencv a little less painful.
 ####GCVImage
 GCVImage is a helpful way to represent an image, without having it take up the memory a Mat does. 
 ```c++
-gcv:GCVImage image = new GCVImage("filepath");
+gcv:GCVImage image = GCVImage("filepath");
+
+image.matrixIsLoaded(); // false
+
 // Get the image's matrix
 cv::Mat matrix = image.loadMat();
 
@@ -32,7 +35,7 @@ gcv::showImageAtPath(string pathToImg);
 // Get all the images in the given directory:
 bool displayImages = false;
 bool loadMats = false;
-vector<GCVImage> images = loadImagesFromDirectory("./photos", displayImages, loadMats);
+vector<GCVImage> images = gcv::loadImagesFromDirectory("./photos", displayImages, loadMats);
 ```
 
 #####All files are compiled into the dynamic library, "libgcv".

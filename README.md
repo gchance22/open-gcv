@@ -36,3 +36,6 @@ vector<GCVImage> images = loadImagesFromDirectory("./photos", displayImages, loa
 ```
 
 #####All files are compiled into the dynamic library, "libgcv".
+
+##Author
+Graham Chance

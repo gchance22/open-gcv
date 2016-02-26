@@ -16,6 +16,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include "GCVImage.hpp"
 
 using namespace cv;
 
@@ -46,22 +47,22 @@ namespace gcv {
     /**
      *  Gets the names of all the images in a directory.
      *
-     *  @param dest    Where to put the loaded names.
      *  @param dirname The directory to search.
      *
-     *  @return -1 if failed to open directory, otherwise 0.
+     *  @return Names of all the images found.
      */
-    int imageNamesInDirectory(string dest[], string dirname);
+    vector<string> imageNamesInDirectory(string dirname);
 
     /**
      *  Loads all images in a directory.
      *
-     *  @param dest    Destination array.
-     *  @param nimages The number of images in the directory.
      *  @param dirname The name of the directory.
      *  @param display Whether to display all of the found images.
+     *  @param loadMats Whether the GCVImages should load their matrices.
+     *
+     *  @return A vector containing the images as GCVimages
      */
-    void loadImagesFromDirectory(Mat dest[], int nimages, string dirname, bool display);
+    vector<GCVImage> loadImagesFromDirectory(string dirname, bool display, bool loadMats);
 
     /**
      *  Displays an image.

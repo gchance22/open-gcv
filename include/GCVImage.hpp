@@ -10,7 +10,6 @@
 #define GCVImage_hpp
 
 #include <stdio.h>
-#include "gcv_utilities.hpp"
 #include <string>
 #include "opencv2/opencv.hpp"
 

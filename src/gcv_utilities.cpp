@@ -48,65 +48,56 @@ namespace gcv {
         return numImages;
     }
 
-    int imageNamesInDirectory(string dest[], string dirname) {
+    vector<string> imageNamesInDirectory(string dirname) {
         printf("Accessing directory %s\n\n", dirname.c_str());
         DIR *dirp;
         struct dirent *dp;
+        vector<string> names;
         // open the directory
         dirp = opendir( dirname.c_str() );
         if( dirp == NULL ) {
             printf("Cannot open directory %s\n", dirname.c_str());
-            return -1;
+            return names;
         }
-        // Now add image names to array
+        // Now add image names to vector
         int i = 0;
         while( (dp = readdir(dirp)) != NULL ) {
             if( strstr(dp->d_name, ".jpg") ||
                strstr(dp->d_name, ".png") ||
                strstr(dp->d_name, ".ppm") ||
                strstr(dp->d_name, ".tif") ) {
-                dest[i] = dp->d_name;
-                cout << dest[i] << endl;
+                names.push_back(dp->d_name);
+                //cout << dest[i] << endl;
                 i++;
             }
         }
 
         // close the directory
-
         closedir(dirp);
-        return 0;
+        return names;
     }
 
-    void loadImagesFromDirectory(Mat dest[], int nimages, string dirname, bool display) {
-        printf("Attempting to load %i images\n",nimages);
-        if (nimages==0) { return; }
-        string *imageNames = new string[nimages];
-        gcv::imageNamesInDirectory(imageNames,dirname);
-        for (int i=0; i<nimages;i++) {
+    vector<GCVImage> loadImagesFromDirectory(string dirname, bool display, bool loadMats) {
+        vector<GCVImage> images;
+        vector<string> imageNames = imageNamesInDirectory(dirname);
+        for (int i=0; i<imageNames.size();i++) {
             // read the image
             string path = dirname + "/" + imageNames[i];
-            Mat img = imread(path);
-            // test if the read was successful
-            if(img.data == NULL) {
-                printf("Unable to read image %s\n", path.c_str());
-                break;
-            }
-
-            dest[i] = img;
-            if (display) {
-                namedWindow(imageNames[i], CV_WINDOW_NORMAL);
-                imshow("", dest[i]);
-                waitKey(0);
-                destroyWindow(imageNames[i]);
-            }
-
+            images.push_back(GCVImage(dirname,imageNames[i],loadMats));
         }
-        printf("%i images loaded into array\n",nimages);
-        delete[] imageNames;
+        if (display) {
+        for (int i=0; i<images.size();i++) {
+                namedWindow(images[i].name, CV_WINDOW_NORMAL);
+                imshow("", images[i].loadMat());
+                waitKey(0);
+                destroyWindow(images[i].name);
+            }
+        }
+        return images;
     }
 
     void showMat(Mat img, string displayname) {
-        cout << "showing image" << endl;
+        printf("showing image \"%s\"\n",displayname.c_str());;
         namedWindow(displayname, CV_WINDOW_NORMAL);
         imshow(displayname, img);
         waitKey(0);

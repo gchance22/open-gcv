@@ -7,10 +7,14 @@
 //
 
 #include "GCVImage.hpp"
+#include "gcv_utilities.hpp"
 
 namespace gcv  {
 
     Mat GCVImage::loadMat(bool persist) {
+        if (this->matrixIsLoaded()) {
+            return this->matrix;
+        }
         Mat mat = imread(this->imgPath);
         if (persist) {
             this->matrix = mat;

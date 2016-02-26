@@ -22,11 +22,11 @@ all: utilities gcvimage lib
 gcvimage: GCVImage.o gcv_utilities.o
 	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
 
-utilities: gcv_utilities.o
+utilities: GCVImage.o gcv_utilities.o 
 	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
 
 
-lib: gcv_utilities.o gcvimage.o
+lib: gcv_utilities.o 
 	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../libgcv.dylib
 
 

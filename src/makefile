@@ -4,7 +4,7 @@ CC = clang++
 CXX = $(CC)
 
 # OSX include paths
-CFLAGS = -I/usr/local/Cellar/opencv/2.4.12_2/include -I../include
+CFLAGS = -I/usr/local/Cellar/opencv/2.4.12_2/include -I../include -I../include
 
 CXXFLAGS = $(CFLAGS)
 
@@ -19,14 +19,14 @@ BINDIR = ../bin
 
 all: utilities gcvimage lib
 
-gcvimage: GCVImage.o gcv_utilities.o
+gcvimage: gcvimage.o gcv_utilities.o
 	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
 
-utilities: GCVImage.o gcv_utilities.o 
+utilities: gcvimage.o gcv_utilities.o
 	$(CC) $^ -dynamiclib -o $(BINDIR)/$@ $(LDFLAGS) $(LDLIBS)
 
 
-lib: gcv_utilities.o 
+lib: gcv_utilities.o
 	g++ -dynamiclib -undefined suppress -flat_namespace gcvimage.o gcv_utilities.o -o ../libgcv.dylib
 
 

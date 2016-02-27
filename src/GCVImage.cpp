@@ -1,12 +1,12 @@
 //
-//  GCVImage.cpp
+//  gcvimage.cpp
 //
 //
 //  Created by Graham Chance on 2/20/16.
 //
 //
 
-#include "GCVImage.hpp"
+#include "gcvimage.hpp"
 #include "gcv_utilities.hpp"
 
 namespace gcv  {

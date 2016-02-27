@@ -1,13 +1,13 @@
 //
-// GCVImage.hpp
+// gcvimage.hpp
 //
 //
 //  Created by Graham Chance on 2/20/16.
 //
 //
 
-#ifndef GCVImage_hpp
-#define GCVImage_hpp
+#ifndef gcvimage_hpp
+#define gcvimage_hpp
 
 #include <stdio.h>
 #include <string>
@@ -110,4 +110,4 @@ namespace gcv {
     };
 }
 
-#endif /* gcvImage_hpp */
+#endif /* gcvimage_hpp */

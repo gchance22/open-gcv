@@ -88,7 +88,7 @@ namespace gcv {
         if (display) {
         for (int i=0; i<images.size();i++) {
                 namedWindow(images[i].name, CV_WINDOW_NORMAL);
-                imshow("", images[i].loadMat());
+                imshow("", images[i].getMat());
                 waitKey(0);
                 destroyWindow(images[i].name);
             }

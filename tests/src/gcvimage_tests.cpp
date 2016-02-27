@@ -12,7 +12,7 @@ TEST_CASE( "GCVImage initialization" ) {
     GCVImage *image1 = new GCVImage(TEST_IMAGE_PATH, "octocat", false);
 
     REQUIRE( image1->name == "octocat" );
-    REQUIRE( image1->imgPath == TEST_IMAGE_PATH );
+    REQUIRE( image1->getPath() == TEST_IMAGE_PATH );
     REQUIRE( image1->matrixIsLoaded() == false );
 
     GCVImage *image2 = new GCVImage(TEST_IMAGE_PATH, "", true);
@@ -25,10 +25,10 @@ TEST_CASE( "GCVImage matrix loading" ) {
     GCVImage *image1 = new GCVImage(TEST_IMAGE_PATH, "octocat", false);
 
     REQUIRE( image1->name == "octocat" );
-    REQUIRE( image1->imgPath == TEST_IMAGE_PATH );
+    REQUIRE( image1->getPath() == TEST_IMAGE_PATH );
     REQUIRE( image1->matrixIsLoaded() == false );
-    image1->loadMat(false);
+    image1->getMat(false);
     REQUIRE( image1->matrixIsLoaded() == false );
-    image1->loadMat(true);
+    image1->getMat(true);
     REQUIRE( image1->matrixIsLoaded() == true );
 }

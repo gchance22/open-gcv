@@ -47,7 +47,7 @@ namespace gcv {
             }
 
             if (loadMat) {
-                this->loadMat(true);
+                this->getMat(true);
             } else {
                 this->matrix = Mat();
             }
@@ -65,27 +65,16 @@ namespace gcv {
         GCVImage(string filepath, bool loadMat = false)
         : imgPath(filepath), name(filepath) {
             if (loadMat) {
-                this->loadMat(true);
+                this->getMat(true);
             } else {
                 this->matrix = Mat();
             }
         }
 
         /**
-         *  Path to the image file.
-         */
-        string imgPath;
-
-        /**
          *  A name describing the image.
          */
         string name;
-
-        /**
-         *  The matrix for the image.
-         *  If loadMat() has not been called, it will be NULL;
-         */
-         Mat matrix;
 
         /**
          *  Allows for matrix retrieval only when needed.
@@ -94,7 +83,14 @@ namespace gcv {
          *
          *  @return The Mat at the GCVImage's path.
          */
-        Mat loadMat(bool persist = false);
+        Mat getMat(bool persist = false);
+
+        /**
+         *  Accessor for the file path to the image.
+         *
+         *
+         */
+        string getPath();
 
         /**
          *  Displays the image until key-press.
@@ -103,9 +99,22 @@ namespace gcv {
 
         /** A way to check whether the matrix has been loaded.
          *
-         *  @return Whether matrix is not null.
+         *  @return Whether matrix is not empty.
          */
          bool matrixIsLoaded();
+
+     private:
+
+         /**
+          *  The matrix for the image.
+          *  If getMat() has not been called, it will be empty;
+          */
+          Mat matrix;
+
+          /**
+           *  Path to the image file.
+           */
+          string imgPath;
 
     };
 }

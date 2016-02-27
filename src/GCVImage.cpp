@@ -11,7 +11,7 @@
 
 namespace gcv  {
 
-    Mat GCVImage::loadMat(bool persist) {
+    Mat GCVImage::getMat(bool persist) {
         if (this->matrixIsLoaded()) {
             return this->matrix;
         }
@@ -19,14 +19,23 @@ namespace gcv  {
         if (persist) {
             this->matrix = mat;
         }
+
+        if (mat.data == NULL) {
+            printf("Could not load matrix for image at path %s\n",this->imgPath.c_str());
+        }
+
         return mat;
     }
 
     void GCVImage::show() {
         Mat dst;
         // resize so it fits the window well.
-        resize(this->loadMat(), dst, Size(1024, 768), 0, 0, INTER_CUBIC);
+        resize(this->getMat(), dst, Size(1024, 768), 0, 0, INTER_CUBIC);
         showMat(dst,this->name);
+    }
+
+    string GCVImage::getPath() {
+        return this->imgPath;
     }
 
     bool GCVImage::matrixIsLoaded() {

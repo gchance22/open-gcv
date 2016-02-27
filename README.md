@@ -1,5 +1,5 @@
 # open-gcv
-Making opencv a little less painful.
+Tools for OpenCV
 
 ##Uses
 
@@ -11,7 +11,7 @@ gcv:GCVImage image = GCVImage("filepath");
 image.matrixIsLoaded(); // false
 
 // Get the image's matrix
-cv::Mat matrix = image.loadMat();
+cv::Mat matrix = image.getMat();
 
 // Show image
 image.show();

@@ -19,6 +19,7 @@
 #include "GCVImage.hpp"
 
 using namespace cv;
+using namespace std;
 
 namespace gcv {
 

@@ -1,9 +1,9 @@
 #include "catch.hpp"
 #include "gcv_utilities.hpp"
+#include "string"
 
 using namespace gcv;
 using namespace cv;
-
 
 // not very strong tests because there is only one image.
 TEST_CASE( "Number of images in directory" ) {

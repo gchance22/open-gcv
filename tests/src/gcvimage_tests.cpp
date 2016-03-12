@@ -3,6 +3,7 @@
 
 #include "catch.hpp"
 #include "GCVImage.hpp"
+#include "string"
 
 using namespace gcv;
 using namespace cv;

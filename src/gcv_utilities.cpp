@@ -83,7 +83,7 @@ namespace gcv {
         for (int i=0; i<imageNames.size();i++) {
             // read the image
             string path = dirname + "/" + imageNames[i];
-            images.push_back(GCVImage(dirname,imageNames[i],loadMats));
+            images.push_back(GCVImage(path,imageNames[i],loadMats));
         }
         if (display) {
         for (int i=0; i<images.size();i++) {

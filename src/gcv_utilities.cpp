@@ -20,7 +20,7 @@ namespace gcv {
     }
 
     int numImagesInDirectory(string dirname) {
-        printf("Accessing directory %s\n\n", dirname.c_str());
+        //printf("Accessing directory %s\n\n", dirname.c_str());
         DIR *dirp;
         struct dirent *dp;
         // open the directory
@@ -44,12 +44,12 @@ namespace gcv {
         // close the directory
         closedir(dirp);
         cout << numImages;
-        cout << " images in directory" << endl;
+        //cout << " images in directory" << endl;
         return numImages;
     }
 
     vector<string> imageNamesInDirectory(string dirname) {
-        printf("Accessing directory %s\n\n", dirname.c_str());
+        //printf("Accessing directory %s\n\n", dirname.c_str());
         DIR *dirp;
         struct dirent *dp;
         vector<string> names;
@@ -97,7 +97,7 @@ namespace gcv {
     }
 
     void showMat(Mat img, string displayname) {
-        printf("showing image \"%s\"\n",displayname.c_str());;
+        //printf("showing image \"%s\"\n",displayname.c_str());;
         namedWindow(displayname, CV_WINDOW_NORMAL);
         imshow(displayname, img);
         waitKey(0);

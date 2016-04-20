@@ -23,11 +23,14 @@ namespace gcv {
     public:
 
         /**
-         *  Default Constructor.
+         *  Constructor.
          *
-         *  @return A new GCVImage with an empty image path.
+         *  @param filepath Path to the image file.
+         *
+         *  @return A new GCVImage with the given image path and no matrix.
          */
-        GCVImage() { }
+        GCVImage(string filepath)
+        : imgPath(filepath), name(filepath), matrix(Mat()) {}
 
         /**
          *  Constructor.
@@ -38,14 +41,8 @@ namespace gcv {
          *
          *  @return A new GCVImage with the given image path.
          */
-        GCVImage(string filepath, string name = "", bool loadMat = false)
-        : imgPath(filepath) {
-
-            if (name == "") {
-                this->name = filepath;
-            } else {
-                this->name = name;
-            }
+        GCVImage(string filepath, string name, bool loadMat = false)
+        : imgPath(filepath), name(name) {
 
             if (loadMat) {
                 this->getMat(true);
@@ -53,23 +50,6 @@ namespace gcv {
                 this->matrix = Mat();
             }
 
-        }
-
-        /**
-         *  Constructor.
-         *
-         *  @param filepath Path to the image file.
-         *  @param loadMat Whether the matrix should be loaded.
-         *
-         *  @return A new GCVImage with the given image path.
-         */
-        GCVImage(string filepath, bool loadMat = false)
-        : imgPath(filepath), name(filepath) {
-            if (loadMat) {
-                this->getMat(true);
-            } else {
-                this->matrix = Mat();
-            }
         }
 
         /**

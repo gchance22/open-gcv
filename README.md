@@ -1,9 +1,9 @@
 # open-gcv
 Tools for OpenCV
 
-##Uses
+## Uses
 
-####GCVImage
+#### GCVImage
 GCVImage is a helpful way to represent an image, without having it take up the memory a Mat does. 
 ```c++
 gcv:GCVImage image = GCVImage("filepath");
@@ -22,9 +22,9 @@ gcv:GCVImage image2 = new GCVImage("filepath", true);
 image2.matrixIsLoaded(); // true
 
 ```
-####Utilities
+#### Utilities
 gcv_utilities.hpp contains helpful functions for when working with opencv. 
-#####Examples
+##### Examples
 ```c++
 // Displays the matrix and waits for key press
 gcv::showMat(mat, "image name");
@@ -38,7 +38,7 @@ bool loadMats = false;
 vector<GCVImage> images = gcv::loadImagesFromDirectory("./photos", displayImages, loadMats);
 ```
 
-#####All files are compiled into the dynamic library, "libgcv".
+##### All files are compiled into the dynamic library, "libgcv".
 
-##Author
+## Author
 Graham Chance
